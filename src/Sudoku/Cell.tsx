@@ -22,8 +22,8 @@ const Cell = ({ children, ...props }: any) => {
       xs={1}
       sx={{
         p: 0.5,
-        // width: "44px",
-        // height: "44px",
+        width: "44px",
+        height: "44px",
         borderRight: br ? boldBorder : defaultBorder,
         borderBottom: bb ? boldBorder : defaultBorder,
         borderTop: bt ? boldBorder : defaultBorder,
@@ -42,14 +42,26 @@ const Cell = ({ children, ...props }: any) => {
           color: editable
             ? theme.palette.text.primary
             : theme.palette.text.secondary,
+          borderRadius: "5px",
+          // pt: 0.5,
         }}
       >
         <TextField
           size="small"
-          variant="filled"
+          variant={editable ? "standard" : "filled"}
           disabled={!editable}
           value={val}
           inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          sx={{
+            "& :before": { borderBottom: 0 },
+            "> div": { borderRadius: "5px", fontSize: "1.5rem" },
+            "> input": { textAlign: "center" },
+            p: 0,
+            width: "40px",
+            height: "40px",
+            textAlign: "center",
+          }}
+          onChange={(e) => console.log(e.target.value)}
         />
         {/* <Typography variant="h5">{val}</Typography> */}
         {children}
